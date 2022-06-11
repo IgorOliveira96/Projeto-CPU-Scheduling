@@ -70,16 +70,16 @@ void Lotery(Process *p, int len) {
 	Process pAux;
 	float total_waiting_time = 0, total_turnaround_time = 0, total_response_time = 0;
 	merge_sort_by_arrive_time(p, 0, len-1);
-	for(i=0; i<len; i++){
+	for(i=0; i<len; i++){        //Pegando quantidade maxima de tickets.
 		tickets+=p[i].priority;
 	}
-	for(i=0; i<len; i++){
-		for(k=i; k<len; k++){
-			if(p[k].arrive_time<minArriveTime) minArriveTime= p[k].arrive_time;
+	for(i=0; i<len; i++){      
+		for(k=i; k<len; k++){     
+			if(p[k].arrive_time<minArriveTime) minArriveTime= p[k].arrive_time; 
 		}
 		if(processTime<minArriveTime) processTime = minArriveTime;
-		do{
-			srand(time(NULL));
+		do{                  //Loop para pegar o ticket e achar o processo correspondente.
+			srand(time(NULL));    
 			sorteado = rand()%tickets;
 			ticket = 0;
 			for(j=i; j<len; j++){
@@ -100,7 +100,7 @@ void Lotery(Process *p, int len) {
 	
 	processTime = 0;
 	for(i=0;i<len;i++){
-		if(p[i].arrive_time>processTime) processTime = p[i].arrive_time;	//comando para tratar se n„o tem processos executando;
+		if(p[i].arrive_time>processTime) processTime = p[i].arrive_time;	//comando para tratar se n√£o tem processos executando;
 		p[i].response_time = processTime - p[i].arrive_time;
 		p[i].return_time = processTime+ p[i].burst;
 		p[i].waiting_time = processTime -p[i].arrive_time;
