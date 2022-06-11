@@ -362,12 +362,12 @@ void RR(Process *p, int len, Quantum quantum) {
 	newP[0]=p[0];
 	i=0;
 	j=1;
-	while(1==1){
+	while(1==1){  //Loop para executar o quantum de cada processo.
 		exec++;
 		if(exec>=newP[i].burst||exec>=quantum){
 			if(newP[i].burst>quantum){
 				newPLen+=1;
-				newP = (Process *) realloc(newP,sizeof(Process) *newPLen);
+				newP = (Process *) realloc(newP,sizeof(Process) *newPLen);   //Realocando os processos que já fizeram quantum 2.
 				newP[newPLen-1] = newP[i];
 				newP[newPLen-1].burst-=exec;
 				newP[i].burst = exec;
@@ -376,9 +376,9 @@ void RR(Process *p, int len, Quantum quantum) {
 			i++;
 			time++;
 		}
-		if(p[j].arrive_time <= time){
+		if(p[j].arrive_time <= time){    //Checar se o processo já chegou no tempo.
 			newPLen+=1;
-			newP = (Process *) realloc(newP,sizeof(Process) *newPLen);
+			newP = (Process *) realloc(newP,sizeof(Process) *newPLen);  //Realocando os processos que já fizeram quantum 2.
 			newP[newPLen-1] = p[j];
 			j+=1;
 		}
@@ -391,7 +391,7 @@ void RR(Process *p, int len, Quantum quantum) {
 	time = 0;
 
 	for(i=0;i<newPLen;i++){
-		if(newP[i].arrive_time>time) time = newP[i].arrive_time;	//comando para tratar se n�o tem processos executando;
+		if(newP[i].arrive_time>time) time = newP[i].arrive_time;	//comando para tratar se não tem processos executando;
 		newP[i].response_time = time - newP[i].arrive_time;
 		newP[i].return_time = time+ newP[i].burst;
 		newP[i].waiting_time = time -newP[i].arrive_time;
