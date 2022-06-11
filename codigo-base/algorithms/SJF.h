@@ -142,9 +142,9 @@ void SJF(Process *p, int len){
 	Process pAux;
 	float total_waiting_time = 0, total_turnaround_time = 0, total_response_time = 0;
 	merge_sort_by_arrive_time(p, 0, len-1);
-	for(i=0; i<len; i++){
+	for(i=0; i<len; i++){           //Loop para pegar o processo com menor burst dentro do time.
 		for(j=i; j<len; j++){
-			if(p[i].burst > p[j].burst && p[j].arrive_time <= time){
+			if(p[i].burst > p[j].burst && p[j].arrive_time <= time){   //Checar qual dos processos dentro do tempo tem o burst menor.
 				pAux = p[i];
 				p[i] = p[j];
 				p[j] = pAux;
@@ -157,7 +157,7 @@ void SJF(Process *p, int len){
 	
 	time = 0;
 	for(i=0;i<len;i++){
-		if(p[i].arrive_time>time) time = p[i].arrive_time;	//comando para tratar se n„o tem processos executando;
+		if(p[i].arrive_time>time) time = p[i].arrive_time;	//comando para tratar se n√£o tem processos executando;
 		p[i].response_time = time - p[i].arrive_time;
 		p[i].return_time = time+ p[i].burst;
 		p[i].waiting_time = time -p[i].arrive_time;
