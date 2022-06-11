@@ -357,7 +357,7 @@ void srt_print_gantt_chart(Process *p, int len)
     free(remain_burst_time);
 }
 
-void organizar(Process* p, int ini, int len){
+void organizar(Process* p, int ini, int len){ 
 	int i,j;
 	Process pAux;
 	for(i=ini; i<len; i++){
@@ -419,14 +419,9 @@ void SRT(Process *p, int len)
 	}
 	
 	time = 0;
-	
-	
-	
-	
-	
-	
+
 	for(i=0;i<newPLen;i++){
-		if(newP[i].arrive_time>time) time = newP[i].arrive_time;	//comando para tratar se n„o tem processos executando;
+		if(newP[i].arrive_time>time) time = newP[i].arrive_time;	//comando para tratar se n√£o tem processos executando;
 		newP[i].response_time = time - newP[i].arrive_time;
 		newP[i].return_time = time+ newP[i].burst;
 		newP[i].waiting_time = time -newP[i].arrive_time;
