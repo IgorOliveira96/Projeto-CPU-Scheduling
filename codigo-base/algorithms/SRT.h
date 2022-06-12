@@ -382,16 +382,16 @@ void SRT(Process *p, int len)
 	newP[0]=p[0];
 	i=0;
 	j=1;
-	while(1==1){
+	while(1==1){  //Loop de 1 em 1 pra saber o time exato e ver todos processos que já chegaram.
 		exec++;
 		
-		if(p[j].arrive_time <= time){
+		if(p[j].arrive_time <= time){   //Checagem se o tempo de chegada é menor ou igual ao tempo.
 			newPLen+=1;
 			newP = (Process *) realloc(newP,sizeof(Process) *newPLen);
 			newP[newPLen-1] = p[j];
 			j+=1;
 			organizar(newP,i+1,newPLen);
-			if(newP[i].burst>newP[newPLen-1].burst){
+			if(newP[i].burst>newP[newPLen-1].burst){   //Checagem se o processo novo tem tempo de execução menor que o processo em execução.
 				newPLen+=1;
 				newP = (Process *) realloc(newP,sizeof(Process) *newPLen);
 				newP[newPLen-1] = newP[i];
