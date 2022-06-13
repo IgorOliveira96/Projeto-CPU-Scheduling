@@ -403,7 +403,7 @@ void SRT(Process *p, int len)
 			}
 			
 		}
-		if(exec>=newP[i].burst){
+		if(exec>=newP[i].burst && newP[i].burst!=0){
 			exec=0;
 			i++;
 			time++;
